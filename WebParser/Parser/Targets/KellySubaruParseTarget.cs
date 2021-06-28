@@ -13,13 +13,14 @@ namespace WebParser.Parser.Targets
         }
 
         private static string VinXPath => @"//div[1]/div/div[3]/dl[3]/dd";
-        private static string ImageXPath => @"//div[1]/div/div[1]/a[1]/img";
+        private static string ImageXPath => @"//div[1]/div[1]/a/div/img";
+        // private static string ImageXPath => @"//div[1]/div/div[1]/a[1]/img";
         private static string PriceXPath => @"//div[1]/div/div[2]/ul/li[1]/span/span[2]";
         private static string PatternForImageUrl => @"\?.*$";
 
         public override async Task<bool> Parse(Page page)
         {
-            const string jsCode = @"() => {return Array.from(document.querySelectorAll('.item')).map(x=>x.outerHTML);}";
+            const string jsCode = @"() => {return Array.from(document.querySelectorAll('.vehicle-card')).map(x=>x.outerHTML);}";
             string[] results = await page.EvaluateFunctionAsync<string[]>(jsCode);
             if (results.Length < 2)
             {

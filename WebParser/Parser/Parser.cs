@@ -19,7 +19,7 @@ namespace WebParser.Parser
             await new BrowserFetcher().DownloadAsync(BrowserFetcher.DefaultRevision);
             LaunchOptions options = new LaunchOptions
             {
-                Headless = true
+                Headless = false
             };
             await using Browser browser = await Puppeteer.LaunchAsync(options);
             await using Page page = await browser.NewPageAsync();
